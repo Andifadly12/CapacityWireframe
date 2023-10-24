@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import Modal from "react-native-modal";
 class Registrasi extends Component {
     constructor(props) {
@@ -10,23 +10,23 @@ class Registrasi extends Component {
     }
     render() { 
         return ( 
-            <View style={style.container}>
+            <ScrollView style={style.container}>
                 <Text style={style.judul}>Daftar</Text>
                 <View style={style.containerInput}>
                     <Text style={{fontSize:18, fontWeight:'400', color:'#000000'}}>Nama</Text>
-                    <TextInput placeholder='Masukkan Nama' style={style.inputemail}/>
+                    <TextInput placeholder='Masukkan Nama' style={style.inputemail} placeholderTextColor={'#000000'}/>
                 </View>
                 <View style={style.containerInput}>
                     <Text style={{fontSize:18, fontWeight:'400', color:'#000000'}}>Email</Text>
-                    <TextInput placeholder='Masukkan Email' style={style.inputemail}/>
+                    <TextInput placeholder='Masukkan Email' style={style.inputemail} placeholderTextColor={'#000000'}/>
                 </View>
                 <View style={style.containerInput}>
                     <Text style={{fontSize:18, fontWeight:'400', color:'#000000'}}>NIM/NIS</Text>
-                    <TextInput placeholder='Masukkan NIM/NIS' style={style.inputemail}/>
+                    <TextInput placeholder='Masukkan NIM/NIS' style={style.inputemail} placeholderTextColor={'#000000'}/>
                 </View>
                 <View style={style.containerInput}>
                     <Text style={{fontSize:18, fontWeight:'400', color:'#000000'}}>Password</Text>
-                    <TextInput placeholder='Masukkan Password' style={style.inputemail}/>
+                    <TextInput placeholder='Masukkan Password' style={style.inputemail} placeholderTextColor={'#000000'}/>
                 </View>
                 <View style={style.containerInput}>
                     <Text style={{borderLeftWidth:2, paddingHorizontal:26, fontSize:16, fontWeight:'400', color:'#000000'}}>Gunakan password yang berbeda dengan yang digunakan email Anda.</Text>
@@ -54,7 +54,7 @@ class Registrasi extends Component {
                 <View style={{marginTop:24, alignItems:'center', justifyContent:'center'}}>
                     <Text style={{fontSize:16, fontWeight:'400', color:'#000000'}}>Sudah punya akun? <Text style={{fontWeight:'700'}}>Masuk</Text></Text>
                 </View>
-            </View>
+            </ScrollView>
          );
     }
 }

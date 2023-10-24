@@ -1,8 +1,11 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
 import { datapeserta } from '../Data_Damy/Homedamy';
 import Icons from 'react-native-vector-icons/Ionicons';
+import HeadersHome from '../componen/HeadersHome';
+import Navigator from '../componen/Navigation';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 class HalUtama extends Component {
     constructor(props) {
         super(props);
@@ -10,25 +13,13 @@ class HalUtama extends Component {
     state = {  }
     render() { 
         return ( 
-            <View style={style.container}>
-                <View style={style.content}>
-                    <TouchableOpacity>
-                        <Icons name="sunny-outline" size={24} color="black"/>
-                    </TouchableOpacity>
-                    <Text style={{fontSize:24, fontWeight:'700', color:'black'}}>Capacity</Text>
-                    <View style={style.contentRight}>
-                    <TouchableOpacity>
-                        <Icons name="notifications-outline" size={24} color="black"/>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../assets/Lufy.jpg')} style={{width:32, height:32, borderRadius:32, marginLeft:16}}/>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={{height:700}}>
+            <View style={{flex:1}}>
+                <HeadersHome/>
+                <View style={{alignItems:'center', flex:1 }}>
                     <FlatList 
                     data={datapeserta}
                     renderItem={({item, index})=>(
+                        <View style={{alignItems:'center', flex:1, width:wp(100) }}>
                         <View style={style.contentStaatus}>
                             <View style={style.StatusHeader}>
                                 <View style={{flexDirection:'row'}}>
@@ -44,7 +35,7 @@ class HalUtama extends Component {
                                 <Text style={{fontSize:16, fontWeight:'400', color:'#000000'}}>{item.status}</Text>
                             </View>
                             <View style={style.StatusImage}>
-                                <Image source={item.gambar} style={{height:415, width:310, borderRadius:25, position:'relative'}}/>
+                                <Image source={item.gambar} style={{height:hp(48), width:wp(85), borderRadius:25, position:'relative'}}/>
                             </View>
                             <View style={style.StatusNavbar}>
                                 <View style={style.StatusIcon}>
@@ -67,43 +58,40 @@ class HalUtama extends Component {
                                         <Text style={style.IconText}>123</Text>
                                     </View>
                                 </View>
-                                <TouchableOpacity>
-                                    <View style={style.pencil}>
-                                        <Image source={require('../../assets/Vector.png')} style={{width:24, height:24}}/>
-                                    </View>
-                                </TouchableOpacity> 
                             </View>
+                        </View>
                         </View>
                     )
                 }
+                horizontal
+                pagingEnabled
+                snapToAlignment='center'
+                showsVerticalScrollIndicator={false}
                 keyExtractor={(item)=>item.id.toString()}
                     />    
+                    <View style={{position:'absolute', marginTop:hp(74)}}>
+                        <TouchableOpacity>
+                            <View style={style.pencil}>
+                                <Image source={require('../../assets/Vector.png')} style={{width:wp(6), height:hp(3)}}/>
+                            </View>
+                        </TouchableOpacity> 
+                    </View>
                 </View>
+                <Navigator />
             </View>
          );
-    }
+    }   
 }
 const style=StyleSheet.create({
-    content:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        paddingHorizontal:16,
-        paddingVertical:20,
-        borderWidth:1,
-        borderBottomEndRadius:24,
-        borderBottomLeftRadius:24
-    },
-    contentRight:{
-        flexDirection:'row',
-
+    container:{
+        flex:1
     },
     contentStaatus:{
-        width:330,
+        width:wp(90),
         height:648,
         borderWidth:1,
         marginTop:20,
         flex:1,
-        alignSelf:'center',
         borderRadius:25
     },
     StatusHeader:{
@@ -121,11 +109,13 @@ const style=StyleSheet.create({
         marginHorizontal:10,
     },
     StatusImage:{
+        flex:1,
         marginVertical:16,
-        alignSelf:'center'
+       alignSelf:'center'
     },
     StatusNavbar:{
         flexDirection:'row',
+        height:hp(8),
         marginHorizontal:16,
         justifyContent:'space-between',
         borderTopWidth:1
@@ -152,10 +142,11 @@ const style=StyleSheet.create({
         marginLeft:10
     },
     pencil:{
+        marginLeft:wp(70),
         borderWidth:1,
         padding:10,
         borderRadius:100,
-        marginTop:5
+        
     }
 })
  
